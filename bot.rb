@@ -7,7 +7,7 @@ redis = Redis.new
 Telegram::Bot::Client.run(TOKEN) do |bot|
   bot.listen do |message|
     case message.text
-    when '/me', '/me@TbI_molodec_bot'
+    when '/me', %r{^/me@TbI_molodec_bot}
       if message.from.username
         counter = redis.incr(message.from.username)
         name = message.from.username
