@@ -19,7 +19,7 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
       end
     when %r{^/you}
       names = message.text.split(' ').select { |word| word[0] == '@' }
-      if names
+      if names.any?
         names.each do |name|
           counter = redis.incr(name)
           bot.api.send_message(chat_id: message.chat.id, text: "Ты молодец, #{name}! Уже #{counter} раз!")
